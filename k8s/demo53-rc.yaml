@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: demo53
+  namespace: com-att-ocnp-mgmt
+spec:
+  replicas: 1
+  selector:
+    app: demo53
+  template:
+    metadata:
+      labels:
+        app: demo53
+    spec:
+      serviceAccount: YOUR
+      containers:
+      - name: demo53
+        image: ${docker-registry}/${docker-namespace}/demo53:latest
+        imagePullPolicy: Always
+        ports:
+         - containerPort: 8080
